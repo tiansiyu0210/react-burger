@@ -70,6 +70,7 @@ class BurgerBuilder extends Component {
                 <BuilderControls addIn={this.addIngredient}
                                  removeIn={this.removeIngredient}
                                  disableInfo={disableInfo}
+                                 price={this.state.price}
                 ></BuilderControls>
             </Aux>
         )
