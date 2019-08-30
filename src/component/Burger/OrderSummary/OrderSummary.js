@@ -17,7 +17,7 @@ const orderSummary = (props) => {
             <ul>
                 {ig}
             </ul>
-            <p>amount is <strong>${props.price}</strong>, please checkout</p>
+            <p>amount is <strong>${props.price.toFixed(2)}</strong>, please checkout</p>
             <Button btnType="Success" clicked={props.pay}>Pay</Button>
             <Button btnType="Danger" clicked={props.cancel}>Cancel</Button>
         </Aux>
