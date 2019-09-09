@@ -15,6 +15,7 @@ const burger = (props) => {
 
     //let merge = [].concat.apply([], burgerIngredient);
 
+    console.log("=========");
     console.log(burgerIngredient);
     //console.log(merge);
 
