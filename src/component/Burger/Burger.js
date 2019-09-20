@@ -1,9 +1,10 @@
 import React from 'react';
 import BurgerIngredient from "./BurgerIngredient/BurgerIngredient";
 import classes from './Burger.module.css';
-import { withRouter } from 'react-router-dom';
+//import { withRouter } from 'react-router-dom';
 
 const burger = (props) => {
+    console.log('burger.js');
     console.log(props);
     let burgerIngredient = Object.keys(props.ingredients)
         .map(biKey => {
@@ -34,4 +35,5 @@ const burger = (props) => {
     );
 };
 
-export default withRouter(burger);//wrap with withRouter the Burger component will have history location and match in the props, the data from the nearest route
+//export default withRouter(burger);//wrap with withRouter the Burger component will have history location and match in the props, the data from the nearest route
+export default burger;

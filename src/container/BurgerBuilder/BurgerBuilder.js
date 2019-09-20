@@ -31,6 +31,7 @@ class BurgerBuilder extends Component {
     }
     componentDidMount() {
         console.log(this.props);
+
         axios.get('https://react-burger-tian.firebaseio.com/ingredinets.json')
             .then(response => {
                 this.setState({ingredients: response.data})
@@ -122,7 +123,18 @@ class BurgerBuilder extends Component {
         //         this.setState({loading: false, ordering: false});
         //         console.log(error);
         //     });
-        this.props.history.push('/checkout');
+
+        const queryParam = [];
+        for(let i in this.state.ingredients){
+            queryParam.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]))
+        }
+
+        const queryString = queryParam.join('&');
+
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryString
+        });
     }
 
     render() {
@@ -137,6 +149,8 @@ class BurgerBuilder extends Component {
         let orderSummary = null;
 
         let burger = this.state.error ? <p>Ingredients cannot be loaded!</p> : <Spinner/>;
+
+        console.log('[BurgerBuilder]', this.state.ingredients);
 
         if(this.state.ingredients){
             burger =  (
