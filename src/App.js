@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Layout from './hoc/Layout/Layout';
 import BurgerBuilder from "./container/BurgerBuilder/BurgerBuilder";
 import Checkout from "./container/Checkout/Checkout";
+import Orders from './container/Order/Orders'
 import {Route, Switch} from 'react-router-dom'
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
               <Switch>
                   {/*history, location and match only in Checkout and BurgerBuilder*/}
                   <Route path="/checkout" component={ Checkout }/>
+                  <Route path="/orders" component={ Orders }/>
                   <Route path="/" exact component={ BurgerBuilder }/>
               </Switch>
           </Layout>
