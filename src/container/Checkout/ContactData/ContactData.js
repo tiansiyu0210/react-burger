@@ -14,7 +14,12 @@ class ContactData extends Component {
                    type: 'text',
                    placeholder: 'Your Name'
                },
-               value: ''
+               value: '',
+               validation: {
+                   required: true,
+                   minLength: 5
+               },
+               valid: false
            },
            street: {
                elementType: 'input',
@@ -22,7 +27,11 @@ class ContactData extends Component {
                    type: 'text',
                    placeholder: 'Your Street'
                },
-               value: ''
+               value: '',
+               validation: {
+                   required: true
+               },
+               valid: false
            },
            zipCode: {
                elementType: 'input',
@@ -30,7 +39,11 @@ class ContactData extends Component {
                    type: 'text',
                    placeholder: 'Your ZipCode'
                },
-               value: ''
+               value: '',
+               validation: {
+                   required: true
+               },
+               valid: false
            },
            email: {
                elementType: 'input',
@@ -38,7 +51,11 @@ class ContactData extends Component {
                    type: 'text',
                    placeholder: 'Your Email'
                },
-               value: ''
+               value: '',
+               validation: {
+                   required: true
+               },
+               valid: false
            },
            deliveryMethod: {
                elementType: 'select',
@@ -53,6 +70,21 @@ class ContactData extends Component {
        },
         loading: false
     };
+
+
+    checkValidation(value, rules){
+        let isValid = false;
+
+        if(rules.required){
+            isValid = value.trim() !== '';
+        }
+
+        if(rules.minLength){
+            isValid = value.length >= rules.minLength;
+        }
+
+        return isValid;
+    }
 
     orderHandler = (event) => {
         event.preventDefault();
@@ -93,6 +125,7 @@ class ContactData extends Component {
         }
 
         updatedOrderElement.value = event.target.value;
+        updatedOrderElement.valid = this.checkValidation(updatedOrderElement.value, updatedOrderElement.validation);
         updatedOrderForm[inputIdentifier] = updatedOrderElement;
 
         this.setState({
